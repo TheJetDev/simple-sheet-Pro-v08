@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Simple Sheet PRO</title> 
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 8px; background-color: #f0f2f5; margin: 0; box-sizing: border-box; font-size: 16px; }
         * { box-sizing: border-box; }
         .app-grid { display: flex; gap: 12px; max-width: 1400px; margin: 0 auto; }
         .calculator-container { flex: 3; min-width: 0; background-color: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1); width: 100%; }
         
-        /* 基本の計算行 */
         .row { display: flex; margin-bottom: 12px; padding: 12px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; gap: 8px; }
 
-        /* --- 【重要】スマホ用 縦に3段並べる設定 --- */
+        /* スマホ用 3段レイアウト強制 */
         @media screen and (max-width: 800px) {
             .row { flex-direction: column !important; align-items: stretch !important; }
             .text-label-input { width: 100% !important; font-size: 1.1em; padding: 10px; margin-bottom: 5px; }
@@ -31,11 +34,9 @@
             .result-text { font-size: 1.6em; }
         }
 
-        /* 共通パーツ */
         .text-label-input { padding: 8px; border: 1px solid #bbb; border-radius: 6px; font-weight: bold; }
         .calc-area { display: flex; align-items: center; gap: 8px; }
         .multiplier-input { width: 110px; font-size: 1.5em; padding: 8px; text-align: right; border: 3px solid #007bff; border-radius: 6px; font-weight: bold; }
-        .result-area { display: flex; align-items: center; gap: 8px; }
         .result-text { font-weight: bold; color: #007bff; }
         
         .operator-group { display: flex; flex-direction: column; align-items: center; width: 32px; }
@@ -48,7 +49,6 @@
         .master-row { padding: 12px; margin-bottom: 12px; border: 3px solid #dc3545; border-radius: 10px; background-color: #fff; display: flex; align-items: center; justify-content: space-between; }
         .master-input { width: 45%; padding: 8px; border: 2px solid #dc3545; border-radius: 6px; font-size: 1.5em; text-align: right; font-weight: bold; }
         
-        /* 最終合計エリア */
         .final-total-area { margin-top: 15px; padding: 20px; border: 3px solid #28a745; border-radius: 12px; background:#e6ffed; text-align: center; cursor: pointer; }
         .copy-hint { font-size: 0.9em; color: #28a745; margin-top: 8px; font-weight: bold; background: #fff; border-radius: 20px; padding: 4px 12px; display: inline-block; border: 1px solid #28a745; }
         
@@ -166,10 +166,12 @@
             ko: { title: "심플 시트 PRO", modeInd: "독립 계산", modeSeq: "연속 계산", masterLabelName: "이름:", masterLabelStart: "기준 숫자", copyMsg: "복사됨", btnClear: "지우기", btnExport: "내보내기", btnImport: "가져오기", btnReset: "초기화", confirmReset: "전체 초기화?", addRow: "+ 행 추가", copyAll: "전체 복사", calcTitle: "계산기", copyHint: "탭하여 복사" },
             es: { title: "Hoja Simple PRO", modeInd: "Independiente", modeSeq: "Secuencial", masterLabelName: "Nombre:", masterLabelStart: "Valor Base", copyMsg: "¡Copiado!", btnClear: "Limpiar", btnExport: "Exp", btnImport: "Imp", btnReset: "Reset", confirmReset: "¿Reiniciar todo?", addRow: "+ Fila", copyAll: "Todo", calcTitle: "Calculadora", copyHint: "Tocar para copiar" },
             fr: { title: "Feuille Simple PRO", modeInd: "Indépendant", modeSeq: "Séquentiel", masterLabelName: "Nom:", masterLabelStart: "Valeur base", copyMsg: "Copié !", btnClear: "Effacer", btnExport: "Exp", btnImport: "Imp", btnReset: "Reset", confirmReset: "Tout réinitialiser ?", addRow: "+ Ligne", copyAll: "Tout", calcTitle: "Calculatrice", copyHint: "Appuyer pour copier" },
-            pt: { title: "Folha Simples PRO", modeInd: "Independente", modeSeq: "Sequencial", masterLabelName: "Nome:", masterLabelStart: "Valor Base", copyMsg: "Copiado!", btnClear: "Limpar", btnExport: "Exp", btnImport: "Imp", btnReset: "Reset", confirmReset: "Reset total?", addRow: "+ Linha", copyAll: "Tudo", calcTitle: "Calculadora", copyHint: "Toque para copiar" }
+            pt: { title: "Folha Simples PRO", modeInd: "Independente", modeSeq: "Sequencial", masterLabelName: "Nome:", masterLabelStart: "Valor Base", copyMsg: "Copiado!", btnClear: "Limpar", btnExport: "Exp", btnImport: "Imp", btnReset: "Reset", confirmReset: "Reset total?", addRow: "+ Linha", copyAll: "Tudo", calcTitle: "Calculadora", copyHint: "Toque para copiar" },
+            de: { title: "Einfaches Blatt PRO", modeInd: "Unabhängig", modeSeq: "Sequentiell", masterLabelName: "Name:", masterLabelStart: "Basiswert", copyMsg: "Kopiert!", btnClear: "Löschen", btnExport: "Exp", btnImport: "Imp", btnReset: "Reset", confirmReset: "Alles zurücksetzen?", addRow: "+ Zeile", copyAll: "Alles kopieren", calcTitle: "Rechner", copyHint: "Zum Kopieren tippen" },
+            it: { title: "Foglio Semplice PRO", modeInd: "Indipendente", modeSeq: "Sequenziale", masterLabelName: "Nome:", masterLabelStart: "Valore Base", copyMsg: "Copiato!", btnClear: "Cancella", btnExport: "Exp", btnImport: "Imp", btnReset: "Reset", confirmReset: "Ripristina tutto?", addRow: "+ Riga", copyAll: "Copia tutto", calcTitle: "Calcolatrice", copyHint: "Tocca per copiare" }
         };
 
-        let currentLanguage = 'en'; // スタート言語を英語に設定
+        let currentLanguage = 'en'; 
         let currentCalc = "0";
 
         function init() {
@@ -189,14 +191,19 @@
             if(s.smartRows && s.smartRows.length) s.smartRows.forEach(r=>addRowSmart(r)); else addRowSmart();
             if(s.simpleRows && s.simpleRows.length) s.simpleRows.forEach(r=>addRowSimple(r)); else addRowSimple();
             
-            // 保存された言語があればそれを使い、なければ英語
-            const savedLang = localStorage.getItem('simpleSheetLang');
-            setLanguage(savedLang || 'en'); 
+            // 重要：最後に使った言語を記憶から読み込む
+            const savedLang = localStorage.getItem('simpleSheetLang') || 'en';
+            setLanguage(savedLang); 
+
+            // Service Workerの登録（PWA用）
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').catch(() => {});
+            }
         }
 
         function setLanguage(lang) {
             currentLanguage = lang; 
-            localStorage.setItem('simpleSheetLang', lang);
+            localStorage.setItem('simpleSheetLang', lang); // 言語を記憶
             const d = languageMap[lang];
             document.getElementById('title').textContent = d.title;
             document.getElementById('smartSheetBtn').textContent = d.modeInd;
